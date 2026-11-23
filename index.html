@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6efe3">
+<title>Happy Birthday, Raji</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: soft, handmade, affectionate, quietly witty
+   IDEA a hand-made scrapbook: cream paper, pressed flowers, washi tape, typewritten slips, a real ECG strip and an Rx pad from her world
+   PICTURE a crescent wreath of pressed flowers around her name; an ECG strip whose red ink draws a heart
+   COLOUR cream paper, faded brown ink, dusty rose, sage, mustard; ECG-paper pink
+   TYPE Homemade Apple (hand) + Special Elite (typewriter) + Cormorant Garamond (captions)
+   LAYOUT one paper column up to 760px; notes as a loose two-column collage, one column on phones */
+:root{color-scheme:light;--paper:#f6efe3;--kraft:#e6d6bc;--ink:#4b3b36;--soft:#8a7468;--rose:#c98b8b;--mauve:#b07a86;--sage:#9aab89;--olive:#7d8a5a;--mustard:#d6a84f;--red:#b3263b}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+html{overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .2 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");color:var(--ink);font:18px/1.6 'Cormorant Garamond',Georgia,serif;overflow-x:clip}
+h1,h2,p{margin:0}
+.hand{font-family:'Homemade Apple',cursive;font-weight:400}
+.type{font-family:'Special Elite','Courier New',monospace}
+.wrap{max-width:760px;margin:0 auto;padding:0 max(18px,5vw)}
+section{padding:56px 0}
+h2{font-family:'Homemade Apple',cursive;font-weight:400;font-size:clamp(26px,6vw,34px);line-height:1.5;text-align:center;color:var(--ink)}
+.cap{font-style:italic;color:var(--soft);text-align:center;margin-top:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:2px dashed var(--red);outline-offset:4px}
+
+/* tape + torn paper */
+.tape{position:absolute;width:110px;height:28px;z-index:3;opacity:.88;clip-path:polygon(2% 0,98% 0,100% 22%,97% 48%,100% 74%,98% 100%,2% 100%,0 76%,3% 50%,0 24%)}
+.tp1{background:repeating-linear-gradient(90deg,rgba(214,168,79,.75) 0 8px,rgba(240,214,160,.75) 8px 16px)}
+.tp2{background:radial-gradient(rgba(255,255,255,.7) 2px,transparent 2.5px) 0 0/9px 9px,rgba(201,139,139,.7)}
+.tp3{background:repeating-linear-gradient(135deg,rgba(154,171,137,.8) 0 6px,rgba(200,212,186,.8) 6px 12px)}
+.torn{position:relative}
+
+/* intro */
+.intro{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px max(18px,5vw)}
+.intro .hand{font-size:clamp(24px,6.5vw,32px);line-height:1.6}
+.pwrap{position:relative;margin-top:34px;transform:rotate(-3deg)}
+.pwrap .tape{top:-14px;left:50%;margin-left:-55px;transform:rotate(4deg)}
+.pager{width:min(290px,80vw);background:linear-gradient(#6b625d,#4c4541);border-radius:26px;padding:20px 18px 16px;box-shadow:0 2px 0 rgba(255,255,255,.18) inset,0 18px 30px -18px rgba(60,40,30,.6);animation:buzz 2.6s ease-in-out infinite}
+@keyframes buzz{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-2.5deg)}88%{transform:rotate(2.5deg)}92%{transform:rotate(-1.5deg)}}
+.lcd{background:linear-gradient(#cdd8b6,#b8c69f);color:#2f3a24;border-radius:8px;padding:13px 15px;text-align:left;font-size:16px;line-height:1.5;box-shadow:inset 0 3px 7px rgba(0,0,0,.3)}
+.cur{display:inline-block;width:8px;height:15px;background:#2f3a24;vertical-align:-2px;animation:cur 1s steps(2) infinite}
+@keyframes cur{50%{opacity:0}}
+.pdots{display:flex;justify-content:center;gap:16px;margin-top:14px}
+.pdots i{width:30px;height:10px;border-radius:5px;background:#3a3431}
+.tag{position:relative;margin-top:40px;border:0;background:var(--kraft);padding:14px 30px 14px 46px;font-size:18px;clip-path:polygon(16% 0,100% 0,100% 100%,16% 100%,0 50%);transform:rotate(2deg);box-shadow:none}
+.tag::before{content:"";position:absolute;left:20px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--soft)}
+.tag:hover{background:#dcc8a6}
+.small{font-style:italic;color:var(--soft);margin-top:14px;font-size:16px}
+.js .book{display:none}
+.js.open .book{display:block;animation:fade 1.2s ease both}
+.js.open .intro{display:none}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* hero */
+.hero{padding-top:28px;text-align:center}
+.wreath{position:relative;width:min(560px,100%);aspect-ratio:1;margin:0 auto}
+.wreath svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.title{position:absolute;inset:22% 18%;display:grid;place-content:center;gap:4px;text-align:center}
+.title .hb{font-size:clamp(17px,4.4vw,24px);color:var(--soft);line-height:1.8}
+.title .nm{font-size:clamp(50px,14vw,84px);line-height:1.25;color:var(--ink)}
+.title .type{font-size:14px;color:var(--soft);margin-top:4px}
+
+/* ECG strip */
+.strip{position:relative;margin:26px auto 0;max-width:720px;transform:rotate(-1deg)}
+.strip .sheet{padding:18px 14px 16px;background:linear-gradient(rgba(214,80,100,.32) 1px,transparent 1px) 0 0/25px 25px,linear-gradient(90deg,rgba(214,80,100,.32) 1px,transparent 1px) 0 0/25px 25px,linear-gradient(rgba(214,80,100,.13) 1px,transparent 1px) 0 0/5px 5px,linear-gradient(90deg,rgba(214,80,100,.13) 1px,transparent 1px) 0 0/5px 5px,#fbf1ef}
+.strip .tape.a{top:-12px;left:6%;transform:rotate(-6deg)}
+.strip .tape.b{top:-12px;right:6%;transform:rotate(5deg)}
+.shead,.sfoot{display:flex;justify-content:space-between;gap:4px 14px;flex-wrap:wrap;font-size:13px;color:#7a3340}
+.strip svg{display:block;width:100%;height:auto;margin:6px 0}
+.strip path{fill:none;stroke:var(--red);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.strip.go .p1{animation:draw 2.6s linear forwards}
+.strip.go .p2{animation:draw 2.4s ease-in-out 2.6s forwards}
+.strip.go .p3{animation:draw 2.2s linear 5s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ecgcap{font-size:clamp(17px,4.6vw,22px);text-align:center;margin-top:26px;line-height:1.9}
+
+/* notes */
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 26px;margin-top:34px}
+.note{position:relative;padding:28px 34px 22px 20px;font-size:16px;line-height:1.55;box-shadow:0 10px 18px -14px rgba(75,59,54,.55)}
+.note:nth-child(4n+1){background:#fbf7ef;transform:rotate(-1.6deg)}
+.note:nth-child(4n+2){background:#efe3cf;transform:rotate(1.2deg)}
+.note:nth-child(4n+3){background:#e7ecdf;transform:rotate(.8deg)}
+.note:nth-child(4n){background:#f6e5e3;transform:rotate(-1deg)}
+.note .tape{top:-13px;left:50%;margin-left:-45px;width:90px;height:24px}
+.note .n{display:block;font-size:13px;color:var(--soft);margin-bottom:6px}
+.note svg{position:absolute;right:-12px;bottom:-40px;width:46px;height:70px;overflow:visible}
+.swipe{display:none;text-align:center;font-size:13px;color:var(--soft);margin-top:4px}
+@media(max-width:560px){
+.notes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;margin:16px calc(-1 * max(18px,5vw)) 0;padding:22px 10% 48px;scrollbar-width:none}
+.notes::-webkit-scrollbar{display:none}
+.note{flex:0 0 80%;scroll-snap-align:center;min-height:170px}
+.swipe{display:block}
+section{padding:40px 0}
+.hero{padding-top:16px}
+}
+
+/* Rx */
+.rx{position:relative;margin:30px auto 0;max-width:460px;transform:rotate(1deg);filter:drop-shadow(0 10px 12px rgba(75,59,54,.22))}
+.rx .sheet{position:relative;background:#fffdf8;padding:24px 22px 26px;background-image:repeating-linear-gradient(transparent 0 33px,#eadfcf 33px 34px);background-position:0 96px}
+.rx .tape{top:-13px;left:50%;margin-left:-55px;transform:rotate(-3deg)}
+.rxhead{display:flex;justify-content:space-between;align-items:baseline;gap:4px 12px;flex-wrap:wrap;border-bottom:1.5px solid var(--red);padding-bottom:8px;font-size:13px;color:var(--red)}
+.rxbig{font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:44px;color:var(--red);line-height:1;margin:12px 0 4px}
+.rx dl{margin:0;font-family:'Homemade Apple',cursive;font-size:15px;line-height:34px}
+.rx dt{float:left;clear:left;width:7.2em;font-family:'Special Elite',monospace;font-size:13px;color:var(--soft)}
+.rx dd{margin:0 0 0 7.6em}
+.sign{text-align:right;margin-top:14px;font-size:14px;color:var(--soft)}
+.stamp{position:absolute;right:18px;top:88px;border:3px double var(--red);color:var(--red);padding:4px 12px;font-size:20px;transform:rotate(-14deg) scale(1.6);opacity:0;transition:opacity .25s,transform .35s cubic-bezier(.2,1.6,.4,1)}
+.rx.filled .stamp{opacity:.85;transform:rotate(-14deg) scale(1)}
+@media(max-width:440px){.rx dt{float:none;width:auto;line-height:1.6}.rx dd{margin:0 0 6px}}
+.center{text-align:center}
+.accept{margin-top:30px;border:1.5px solid var(--ink);background:transparent;padding:12px 26px;min-height:48px;font-size:17px;border-radius:2px}
+.accept:hover{background:var(--ink);color:var(--paper)}
+
+/* closing */
+.closing{text-align:center;padding-bottom:90px}
+.closing svg{width:120px;height:90px;overflow:visible}
+.closing .hand{font-size:clamp(22px,6vw,30px);line-height:1.8;margin-top:8px}
+.closing .cap{font-size:20px}
+.closing .from{margin-top:18px;font-size:16px;color:var(--soft)}
+
+
+/* specimen card */
+.spec{position:relative;margin:30px auto 0;max-width:620px;transform:rotate(-.8deg)}
+.spec .tape.a{top:-12px;left:8%;transform:rotate(-8deg)}
+.spec .tape.b{bottom:-12px;right:8%;transform:rotate(6deg)}
+.spec .sheet{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);background:#efe2cb;box-shadow:0 12px 22px -16px rgba(75,59,54,.6)}
+.spec .plant{position:relative;min-height:240px;background:#f7efe0;border-right:1px dashed #c9b493}
+.spec .plant svg{position:absolute;inset:0;width:100%;height:100%}
+.spec .label{padding:20px 20px 18px}
+.spec .no{font-size:13px;color:var(--soft)}
+.spec .sp{font-family:'Homemade Apple',cursive;font-size:24px;line-height:1.6;margin:4px 0 8px}
+.spec dl{margin:0;font-size:14px;line-height:1.5}
+.spec dt{color:var(--soft);font-size:12px;margin-top:8px}
+.spec dd{margin:0}
+@media(max-width:560px){.spec .sheet{grid-template-columns:minmax(0,1fr)}.spec .plant{min-height:180px;border-right:0;border-bottom:1px dashed #c9b493}}
+
+/* schedule */
+.sched{margin:30px auto 0;max-width:680px;background:#fffdf8;padding:18px 16px 20px;box-shadow:0 12px 22px -16px rgba(75,59,54,.6);position:relative;transform:rotate(.6deg)}
+.sched .tape{top:-13px;left:50%;margin-left:-55px;transform:rotate(-2deg)}
+.shead2{display:flex;justify-content:space-between;gap:4px 12px;flex-wrap:wrap;font-size:13px;color:var(--soft);border-bottom:1.5px solid var(--ink);padding-bottom:8px;margin-bottom:6px}
+.day{display:grid;grid-template-columns:4.6em minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:6px;align-items:stretch;padding:5px 0;border-bottom:1px dotted #d8ccb8}
+.day b{font-family:'Special Elite',monospace;font-weight:400;font-size:13px;align-self:center;color:var(--soft)}
+.slot{border:0;border-radius:3px;padding:8px 6px;min-height:44px;font-family:'Special Elite',monospace;font-size:12.5px;line-height:1.25;text-align:center;background:#e7ecdf;color:#3d4a2f}
+.slot.n{background:#e3dcef;color:#463a5c}
+.slot.x{background:#f3e2c6;color:#6b4a17}
+.slot.free{background:var(--rose);color:#fff;font-weight:700}
+.day.bd b{color:var(--red)}
+.say{min-height:3.4em;margin-top:14px;text-align:center;font-family:'Homemade Apple',cursive;font-size:15px;line-height:2;color:var(--red)}
+.stat{text-align:center;font-style:italic;color:var(--soft);margin-top:18px}
+@media(max-width:460px){.day{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}.day b{grid-column:1/-1}.slot{font-size:12px}}
+
+/* receipt */
+.receipt{margin:30px auto 0;width:min(340px,100%);background:#fff;padding:26px 20px 30px;font-size:14px;line-height:1.5;transform:rotate(-1.2deg);filter:drop-shadow(0 10px 10px rgba(75,59,54,.18))}
+.receipt .c{text-align:center}
+.receipt .shop{font-size:18px;letter-spacing:.02em}
+.receipt hr{border:0;border-top:1.5px dashed #b9a98f;margin:12px 0}
+.ri{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:3px 0}
+.ri span:last-child{white-space:nowrap}
+.receipt .tot{font-size:17px}
+.receipt .big{margin-top:8px;padding:8px 10px;background:#fbeaea;color:var(--red);border-radius:2px}
+.receipt .ty{font-family:'Homemade Apple',cursive;font-size:17px;line-height:2;text-align:center;margin-top:12px;color:var(--red)}
+
+.petal{position:fixed;top:-30px;width:12px;height:16px;border-radius:70% 0 70% 0;pointer-events:none;z-index:50;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),112vh) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.strip path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<section class="intro">
+  <p class="hand">Dr. Raji, you're needed.</p>
+  <div class="pwrap">
+    <span class="tape tp2"></span>
+    <div class="pager" aria-hidden="true">
+      <div class="lcd type">TO: DR. RAJI<br>1 PATIENT WAITING<br>STATUS: URGENT(ISH)<span class="cur"></span></div>
+      <div class="pdots"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+  <button class="tag type" id="see">see patient</button>
+  <p class="small">a little something, made by hand</p>
+</section>
+
+<main class="book">
+<div class="wrap">
+
+<section class="hero">
+  <div class="wreath">
+    <svg id="wreath" viewBox="0 0 400 400" aria-hidden="true"></svg>
+    <div class="title">
+      <p class="hand hb">happy birthday,</p>
+      <h1 class="hand nm">Raji</h1>
+      <p class="type">a little scrapbook, just for you</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>the patient's ECG</h2>
+  <p class="cap">recorded the moment he remembered what day it was</p>
+  <div class="strip" id="strip">
+    <span class="tape tp1 a"></span><span class="tape tp3 b"></span>
+    <div class="sheet torn">
+    <div class="shead type"><span>Lead II · 25 mm/s · 10 mm/mV</span><span>Patient: me · Attending: Dr. Raji</span></div>
+    <svg viewBox="0 70 700 280" aria-label="A heartbeat line that speeds up, draws a heart, then settles">
+      <path class="p1" id="p1" pathLength="1"/>
+      <path class="p2" id="p2" pathLength="1"/>
+      <path class="p3" id="p3" pathLength="1"/>
+    </svg>
+    <div class="sfoot type"><span>HR 72 → 152 bpm</span><span>Interpretation: birthday excitement. Benign.</span></div>
+    </div>
+  </div>
+  <p class="hand ecgcap">some things a heart just can't hide</p>
+</section>
+
+<section>
+  <h2>a rare specimen</h2>
+  <p class="cap">pressed, labelled and filed under "one of a kind"</p>
+  <div class="spec">
+    <span class="tape tp3 a"></span>
+    <div class="sheet">
+      <div class="plant"><svg viewBox="-60 -120 120 130" aria-hidden="true"><use href="#fern" transform="rotate(-22) scale(1.3)"/><use href="#sprig" transform="rotate(20) scale(1.25)"/><use href="#bloom" transform="rotate(-4) scale(1.6)"/><use href="#bloom2" transform="rotate(30) scale(1.2)"/><use href="#leaf" transform="rotate(-48) scale(.9)"/></svg></div>
+      <div class="label type">
+        <span class="no">Specimen no. 001 · Collected with care</span>
+        <p class="sp">Dr. Raji</p>
+        <dl>
+          <dt>Habitat</dt><dd>labour rooms, OTs, and very rarely, her own bed</dd>
+          <dt>Most active</dt><dd>3 a.m., somehow</dd>
+          <dt>Distinguishing features</dt><dd>beautiful, inside and out. Annoyingly humble about both.</dd>
+          <dt>Temperament</dt><dd>the sweetest person in any room, even on no sleep</dd>
+          <dt>Status</dt><dd>one of a kind. Handle with care.</dd>
+        </dl>
+      </div>
+    </div>
+    <span class="tape tp1 b"></span>
+  </div>
+</section>
+
+<section>
+  <h2>try booking an appointment</h2>
+  <p class="cap">with Dr. Raji. go on, tap any slot. I'll wait. (I'm used to it.)</p>
+  <div class="sched">
+    <span class="tape tp2"></span>
+    <div class="shead2 type"><span>Dr. Raji · Weekly availability</span><span>Morning · Afternoon · Night</span></div>
+    <div id="week"></div>
+    <p class="say" id="say" aria-live="polite"></p>
+  </div>
+  <p class="stat">Average reply time: somewhere between four hours and next Tuesday. Worth the wait, every single time.</p>
+</section>
+<section>
+  <h2>things I admire about you</h2>
+  <p class="cap">a short list. it could be much longer.</p>
+  <div class="notes type" id="notes"></div>
+  <p class="swipe type" id="swipe">swipe for more →</p>
+</section>
+
+<section>
+  <h2>everything you've done for me</h2>
+  <p class="cap">itemised, because you'd never keep count</p>
+  <div class="receipt type torn2" id="receipt">
+    <div class="c shop">THE KINDNESS STORE</div>
+    <div class="c">Served by: Dr. Raji<br>Customer: me (regular)</div>
+    <hr>
+    <div class="ri"><span>Listening at the worst hours</span><span>free</span></div>
+    <div class="ri"><span>Honest advice, even when I didn't want it</span><span>free</span></div>
+    <div class="ri"><span>Talking me down on bad days</span><span>free</span></div>
+    <div class="ri"><span>Believing in me before I did</span><span>free</span></div>
+    <div class="ri"><span>Laughing at my terrible jokes</span><span>free</span></div>
+    <div class="ri"><span>Always picking up, even mid-shift</span><span>free</span></div>
+    <div class="ri big"><span>Making me realise my own worth</span><span>everything</span></div>
+    <hr>
+    <div class="ri tot"><span>TOTAL VALUE</span><span>priceless</span></div>
+    <div class="ri"><span>Amount paid</span><span>₹0.00</span></div>
+    <div class="ri"><span>Balance owed by me</span><span>a lifetime</span></div>
+    <hr>
+    <p class="ty">thank you for making me see what you saw in me</p>
+    <div class="c">*** no refunds. no expiry. ***</div>
+  </div>
+</section>
+
+<section>
+  <h2>doctor's orders, for once</h2>
+  <p class="cap">you write everyone else's. this one is yours.</p>
+  <div class="rx" id="rx">
+    <span class="tape tp2"></span>
+    <div class="sheet torn">
+    <div class="rxhead type"><span>Birthday Prescription</span><span>Patient: Dr. Raji</span><span id="today"></span></div>
+    <div class="rxbig">Rx</div>
+    <dl>
+      <dt>Take</dt><dd>1 cake, 1 long nap, unlimited compliments</dd>
+      <dt>How</dt><dd>with zero patients and zero pagers</dd>
+      <dt>Side effects</dt><dd>smiling a lot, feeling very loved</dd>
+      <dt>Refills</dt><dd>every year, forever</dd>
+    </dl>
+    <p class="sign hand">your favourite patient</p>
+    <span class="stamp type">FILLED</span>
+    </div>
+  </div>
+  <div class="center"><button class="accept type" id="accept">accept prescription</button></div>
+</section>
+
+<section class="closing">
+  <svg viewBox="-60 -80 120 90" aria-hidden="true"><use href="#bloom" transform="rotate(-24)"/><use href="#fern" transform="rotate(14) scale(.9)"/><use href="#sprig" transform="rotate(34) scale(.8)"/><use href="#bloom2" transform="rotate(-6) scale(.8)"/></svg>
+  <p class="hand">have the most beautiful year</p>
+  <p class="cap">you give so much of yourself to everyone else. I hope this year gives some of it back.</p>
+  <p class="from type">with love, on your birthday</p>
+</section>
+
+</div>
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="defs"></defs></svg>
+
+<script>
+{
+  const $ = (id) => document.getElementById(id);
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seed = 23;
+  const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+
+  /* pressed-flower shapes */
+  const C = {rose: '#c98b8b', mauve: '#b07a86', sage: '#9aab89', olive: '#7d8a5a', mustard: '#d6a84f', lav: '#a58bb0', cream: '#fffaf0'};
+  let fern = `<path d="M0,0 Q3,-36 -2,-74" stroke="${C.olive}" stroke-width="1.3" fill="none"/>`;
+  for (let i = 1; i <= 9; i++) {
+    const y = -6 - i * 7.2, w = 8 - i * .55;
+    fern += `<ellipse cx="${-w / 2 - 1}" cy="${y}" rx="${w}" ry="2.3" fill="${C.sage}" transform="rotate(28 ${-w / 2 - 1} ${y})"/><ellipse cx="${w / 2 + 1}" cy="${y - 2}" rx="${w}" ry="2.3" fill="${C.sage}" transform="rotate(-28 ${w / 2 + 1} ${y - 2})"/>`;
+  }
+  const petals = (n, rx, ry, cy, fill, mid) => {
+    let s = '';
+    for (let k = 0; k < n; k++) s += `<ellipse cx="0" cy="${cy - ry * .8}" rx="${rx}" ry="${ry}" fill="${fill}" opacity=".92" transform="rotate(${k * 360 / n} 0 ${cy})"/>`;
+    return s + `<circle cx="0" cy="${cy}" r="${rx * .75}" fill="${mid}"/>`;
+  };
+  const bloom = `<path d="M0,0 Q-3,-22 0,-40" stroke="${C.olive}" stroke-width="1.3" fill="none"/>` + petals(6, 4.6, 9.5, -50, C.rose, C.mustard);
+  const bloom2 = `<path d="M0,0 Q2,-18 0,-32" stroke="${C.olive}" stroke-width="1.1" fill="none"/>` + petals(5, 3.4, 7, -39, C.mauve, C.cream);
+  let sprig = `<path d="M0,0 L0,-64" stroke="${C.olive}" stroke-width="1.1"/>`;
+  for (let i = 0; i < 9; i++) sprig += `<ellipse cx="${i % 2 ? 2.6 : -2.6}" cy="${-30 - i * 4}" rx="2.2" ry="4" fill="${C.lav}" transform="rotate(${i % 2 ? 20 : -20} ${i % 2 ? 2.6 : -2.6} ${-30 - i * 4})"/>`;
+  const leaf = `<path d="M0,0 C11,-16 11,-38 0,-54 C-11,-38 -11,-16 0,0Z" fill="${C.sage}"/><path d="M0,-2 L0,-50" stroke="${C.olive}" stroke-width=".9"/>`;
+  let dots = `<path d="M0,0 L0,-30 M0,-18 L-12,-36 M0,-22 L10,-40 M0,-30 L-3,-48 M-12,-36 L-20,-44 M10,-40 L16,-50" stroke="#b9a98f" stroke-width=".8" fill="none"/>`;
+  [[-20, -44], [-12, -36], [-3, -48], [10, -40], [16, -50], [0, -30], [-16, -48], [6, -52]].forEach(([x, y]) => { dots += `<circle cx="${x}" cy="${y}" r="2.4" fill="${C.cream}" stroke="#cdbfa8" stroke-width=".6"/>`; });
+  $('defs').innerHTML = `<g id="fern">${fern}</g><g id="bloom">${bloom}</g><g id="bloom2">${bloom2}</g><g id="sprig">${sprig}</g><g id="leaf">${leaf}</g><g id="dots">${dots}</g>`;
+
+  /* crescent wreath */
+  const kinds = ['fern', 'leaf', 'bloom', 'dots', 'sprig', 'fern', 'bloom2', 'leaf', 'dots', 'bloom'];
+  let w = '';
+  const N = 30, a0 = 125, a1 = 415;
+  for (let i = 0; i < N; i++) {
+    const a = (a0 + (a1 - a0) * i / (N - 1)) * Math.PI / 180;
+    const r = 132 + (rnd() - .5) * 14;
+    const x = 200 + Math.cos(a) * r, y = 200 + Math.sin(a) * r;
+    const rot = a * 180 / Math.PI + 90 + (rnd() - .5) * 60;
+    const sc = .75 + rnd() * .45;
+    w += `<use href="#${kinds[i % kinds.length]}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(1)}) scale(${sc.toFixed(2)})"/>`;
+  }
+  [[78, 300, 210], [300, 82, 30], [322, 300, 140]].forEach(([x, y, r]) => {
+    w += `<use href="#bloom" transform="translate(${x} ${y}) rotate(${r}) scale(1.25)"/><use href="#bloom2" transform="translate(${x + 10} ${y - 6}) rotate(${r + 40}) scale(1.1)"/>`;
+  });
+  $('wreath').innerHTML = w;
+
+  /* torn edges */
+  document.querySelectorAll('.torn').forEach((el) => {
+    const top = [], bot = [];
+    for (let x = 0; x <= 100; x += 2.5) top.push(`${x}% ${(rnd() * 5).toFixed(1)}px`);
+    for (let x = 100; x >= 0; x -= 2.5) bot.push(`${x}% calc(100% - ${(rnd() * 5).toFixed(1)}px)`);
+    el.style.clipPath = `polygon(${top.join(',')},${bot.join(',')})`;
+  });
+  /* ECG paths */
+  const B = 300;
+  const beat = (x) => `L${x},${B} L${x + 6},${B - 12} L${x + 12},${B} L${x + 20},${B} L${x + 25},${B + 10} L${x + 31},${B - 92} L${x + 37},${B + 28} L${x + 43},${B}`;
+  $('p1').setAttribute('d', `M0,${B} ` + [10, 92, 160, 214, 258].map(beat).join(' ') + ` L350,${B}`);
+  $('p2').setAttribute('d', 'M350,300 C290,250 230,205 230,155 C230,115 260,92 295,92 C325,92 345,115 350,135 C355,115 375,92 405,92 C440,92 470,115 470,155 C470,205 410,250 350,300');
+  $('p3').setAttribute('d', `M350,${B} ` + [400, 462, 540, 630].map(beat).join(' ') + ` L700,${B}`);
+  const strip = $('strip');
+  if (calm || !('IntersectionObserver' in window)) strip.classList.add('go');
+  else {
+    const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) { strip.classList.add('go'); io.disconnect(); } }); }, {threshold: .5});
+    io.observe(strip);
+  }
+
+  /* notes */
+  const notes = [
+    'That you bring tiny humans into the world for a living, and still call it “just work”.',
+    'How you’re the smartest person in any room, and never make anyone feel small for it.',
+    'Your replies after a 30-hour shift. Typos and all.',
+    'That you make time for people when you have none to spare.',
+    'How you hold a stranger’s hand on their scariest day like they’re family.',
+    'That talking to you has never once felt like effort.',
+    'That we’ve never met, and it still feels like I’ve known you forever.',
+    'That the world is lucky to have you in it. And so am I.'
+  ];
+  const tapes = ['tp1', 'tp2', 'tp3'];
+  const deco = ['sprig', 'bloom2', 'fern', 'bloom'];
+  $('notes').innerHTML = notes.map((t, i) =>
+    `<div class="note"><span class="tape ${tapes[i % 3]}" style="transform:rotate(${i % 2 ? 4 : -5}deg)"></span><span class="n">no. ${i + 1}</span>${t}${i % 3 === 0 ? `<svg viewBox="-25 -70 50 75" aria-hidden="true"><use href="#${deco[(i / 3) % 4 | 0]}" transform="rotate(${i % 2 ? 18 : -18})"/></svg>` : ''}</div>`).join('');
+
+  const nb = $('notes');
+  nb.addEventListener('scroll', () => {
+    const atEnd = nb.scrollLeft + nb.clientWidth >= nb.scrollWidth - 20;
+    $('swipe').textContent = atEnd ? 'that\u2019s all of them. for now.' : 'swipe for more \u2192';
+  }, {passive: true});
+
+  /* Rx date */
+  $('today').textContent = new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'});
+
+  /* petals */
+  const pc = ['#c98b8b', '#b07a86', '#d6a84f', '#9aab89', '#e3b8b2'];
+  const petalsFall = (n) => {
+    if (calm) return;
+    for (let i = 0; i < n; i++) {
+      const p = document.createElement('span');
+      p.className = 'petal';
+      p.style.left = (Math.random() * 100) + 'vw';
+      p.style.background = pc[i % pc.length];
+      p.style.setProperty('--dx', ((Math.random() - .5) * 160) + 'px');
+      p.style.animationDuration = (4 + Math.random() * 3) + 's';
+      p.style.animationDelay = (Math.random() * 1.2) + 's';
+      const s = .7 + Math.random() * .8;
+      p.style.width = (12 * s) + 'px';
+      p.style.height = (16 * s) + 'px';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 8500);
+    }
+  };
+
+
+  /* receipt zigzag */
+  const rc = $('receipt');
+  const zz = [];
+  for (let x = 0; x <= 100; x += 4) zz.push(`${x}% ${x % 8 ? 0 : 7}px`);
+  for (let x = 100; x >= 0; x -= 4) zz.push(`${x}% calc(100% - ${x % 8 ? 0 : 7}px)`);
+  rc.style.clipPath = `polygon(${zz.join(',')})`;
+
+  /* schedule */
+  const week = [
+    ['Mon', ['OPD', 'Labour room', 'On call'], ['', '', 'n']],
+    ['Tue', ['OT', 'OT (still)', 'Sleep (attempted)'], ['', '', 'x']],
+    ['Wed', ['Rounds', 'Deliveries', 'Night shift'], ['', '', 'n']],
+    ['Thu', ['Night shift (cont.)', 'Sleeps 4 hrs', 'Emergency C-section'], ['n', 'x', 'n']],
+    ['Fri', ['OPD', 'Rounds', 'On call'], ['', '', 'n']],
+    ['Sat', ['Labour room', 'Labour room', 'Replies to texts (3 a.m.)'], ['', '', 'x']],
+    ['Sun', ['“Sunday?” never heard of her', 'Night shift', 'Night shift'], ['x', 'n', 'n']]
+  ];
+  let html = week.map(([d, sl, k]) => `<div class="day"><b>${d}</b>${sl.map((t, i) => `<button class="slot ${k[i]}">${t}</button>`).join('')}</div>`).join('');
+  html += `<div class="day bd"><b>Today</b>${['Off duty ♡', 'Off duty ♡', 'Off duty ♡'].map((t) => `<button class="slot free">${t}</button>`).join('')}</div>`;
+  $('week').innerHTML = html;
+  const busy = [
+    'Fully booked. Please try again in 2027.',
+    'Dr. Raji is delivering a baby. Please hold.',
+    'Your text is important to her. Estimated wait: 6 hours.',
+    'She\u2019ll reply. Eventually. Probably at 3 a.m.',
+    'Slot taken by a very impatient baby.',
+    'Currently scrubbed in. Leave a message after the beep.',
+    'Running on chai and zero sleep. Do not disturb.'
+  ];
+  let bi = 0;
+  const say = $('say');
+  $('week').addEventListener('click', (e) => {
+    const b = e.target.closest('.slot');
+    if (!b) return;
+    if (b.classList.contains('free')) {
+      say.textContent = 'Booked: the whole day, for celebrating you ♡';
+      petalsFall(24);
+    } else {
+      say.textContent = busy[bi % busy.length];
+      bi++;
+    }
+  });
+
+  /* open */
+  $('see').addEventListener('click', () => {
+    document.documentElement.classList.add('open');
+    window.scrollTo(0, 0);
+    setTimeout(() => petalsFall(26), 400);
+  });
+
+  $('accept').addEventListener('click', (e) => {
+    $('rx').classList.add('filled');
+    e.currentTarget.textContent = 'prescription filled ♡';
+    e.currentTarget.disabled = true;
+    petalsFall(40);
+  });
+}
+</script>
+</body>
+</html>
