@@ -171,6 +171,35 @@ section{padding:40px 0}
 .receipt .big{margin-top:8px;padding:8px 10px;background:#fbeaea;color:var(--red);border-radius:2px}
 .receipt .ty{font-family:'Homemade Apple',cursive;font-size:17px;line-height:2;text-align:center;margin-top:12px;color:var(--red)}
 
+/* herbarium */
+.herb{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 18px;margin-top:32px}
+.hcard{position:relative;background:#fbf7ef;padding:16px 14px 18px;text-align:center;box-shadow:0 10px 18px -14px rgba(75,59,54,.55)}
+.hcard:nth-child(odd){transform:rotate(-1.2deg)}
+.hcard:nth-child(even){transform:rotate(1deg);background:#f3ead9}
+.hcard .tape{top:-12px;left:50%;margin-left:-38px;width:76px;height:22px}
+.hcard svg{display:block;width:100%;height:150px;overflow:visible}
+.hcard .fl{font-family:'Special Elite',monospace;font-size:14px;margin-top:8px}
+.hcard .mean{font-style:italic;color:var(--red);font-size:16px;line-height:1.3;margin-top:2px}
+.hcard .why{font-size:15.5px;line-height:1.45;margin-top:8px;color:var(--ink)}
+.herbnote{text-align:center;font-style:italic;color:var(--soft);font-size:15px;margin-top:26px}
+@media(max-width:700px){.herb{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.herb{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:16px calc(-1 * max(18px,5vw)) 0;padding:22px 14% 30px;scrollbar-width:none}.herb::-webkit-scrollbar{display:none}.hcard{flex:0 0 72%;scroll-snap-align:center}}
+
+/* by the numbers */
+.stubs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:30px}
+.stub{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 46px;background:#efe3cf;min-height:120px;box-shadow:0 8px 14px -12px rgba(75,59,54,.6)}
+.stub:nth-child(3n+2){background:#e7ecdf}
+.stub:nth-child(3n){background:#f6e5e3}
+.stub .main{padding:14px 14px 12px 16px;display:grid;align-content:center;gap:4px}
+.stub .big{font-family:'Homemade Apple',cursive;font-size:20px;line-height:1.7;color:var(--red)}
+.stub .lbl{font-family:'Special Elite',monospace;font-size:13.5px;line-height:1.35}
+.stub .side{border-left:2px dashed rgba(75,59,54,.35);display:grid;place-items:center}
+.stub .side span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.08em;color:var(--soft)}
+.stub::before,.stub::after{content:"";position:absolute;right:37px;width:18px;height:18px;border-radius:50%;background:var(--paper)}
+.stub::before{top:-9px}
+.stub::after{bottom:-9px}
+@media(max-width:520px){.stubs{grid-template-columns:minmax(0,1fr);gap:14px}.stub{min-height:0}.stub .main{padding:12px 12px 10px 14px;gap:0}}
+
 .petal{position:fixed;top:-30px;width:12px;height:16px;border-radius:70% 0 70% 0;pointer-events:none;z-index:50;animation:fall linear forwards}
 @keyframes fall{to{transform:translate(var(--dx),112vh) rotate(540deg)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.strip path{stroke-dashoffset:0}}
@@ -247,6 +276,13 @@ section{padding:40px 0}
 </section>
 
 <section>
+  <h2>Raji, in the language of flowers</h2>
+  <p class="cap">the Victorians used flowers to say what words couldn't. here's what they'd say about you.</p>
+  <div class="herb" id="herb"></div>
+  <p class="herbnote" id="herbnote">pressed with care, one for every reason you're special</p>
+</section>
+
+<section>
   <h2>try booking an appointment</h2>
   <p class="cap">with Dr. Raji. go on, tap any slot. I'll wait. (I'm used to it.)</p>
   <div class="sched">
@@ -257,6 +293,12 @@ section{padding:40px 0}
   </div>
   <p class="stat">Average reply time: somewhere between four hours and next Tuesday. Worth the wait, every single time.</p>
 </section>
+<section>
+  <h2>Raji, by the numbers</h2>
+  <p class="cap">data collected over many late-night chats. accuracy: questionable. sincerity: total.</p>
+  <div class="stubs" id="stubs"></div>
+</section>
+
 <section>
   <h2>things I admire about you</h2>
   <p class="cap">a short list. it could be much longer.</p>
@@ -386,6 +428,52 @@ section{padding:40px 0}
     const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) { strip.classList.add('go'); io.disconnect(); } }); }, {threshold: .5});
     io.observe(strip);
   }
+
+
+  /* herbarium */
+  const ST = (h) => `<path d="M0,0 Q-3,${-h / 2} 0,${-h}" stroke="#7d8a5a" stroke-width="1.5" fill="none"/>`;
+  const ring = (n, r, rx, ry, fill, cy, rot, op) => { let o = ''; for (let k = 0; k < n; k++) o += `<ellipse cx="0" cy="${cy - r}" rx="${rx}" ry="${ry}" fill="${fill}" opacity="${op || .92}" transform="rotate(${k * 360 / n + (rot || 0)} 0 ${cy})"/>`; return o; };
+  const lf = (x, y, r, sc) => `<path d="M0,0 C9,-14 9,-32 0,-46 C-9,-32 -9,-14 0,0Z" fill="#9aab89" transform="translate(${x} ${y}) rotate(${r}) scale(${sc || 1})"/>`;
+  const flora = {
+    chamomile: ST(70) + lf(0, -22, -40, .7) + lf(0, -34, 38, .6) + ring(16, 9, 3.2, 9, '#fffdf6', -84, 0, 1).replace(/fill="#fffdf6"/g, 'fill="#fffdf6" stroke="#d8ccb8" stroke-width=".6"') + '<circle cy="-84" r="7" fill="#e0b33f"/><circle cy="-86" r="3" fill="#f0cf6a"/>',
+    iris: ST(64) + lf(-2, -4, -12, 1.3) + `<g transform="translate(0 -76)"><ellipse cx="-10" cy="10" rx="8" ry="15" fill="#7b6aa8" transform="rotate(-40 -10 10)"/><ellipse cx="10" cy="10" rx="8" ry="15" fill="#7b6aa8" transform="rotate(40 10 10)"/><ellipse cx="0" cy="14" rx="7" ry="13" fill="#6a5996"/><ellipse cx="-6" cy="-10" rx="6" ry="14" fill="#a597cf" transform="rotate(-18 -6 -10)"/><ellipse cx="6" cy="-10" rx="6" ry="14" fill="#a597cf" transform="rotate(18 6 -10)"/><ellipse cx="0" cy="-12" rx="5" ry="13" fill="#b6a9da"/><path d="M-9,8 L-4,13 M9,8 L4,13" stroke="#e0b33f" stroke-width="2.4" stroke-linecap="round"/></g>`,
+    gladiolus: ST(110) + lf(1, -2, -6, 1.7) + [0, 1, 2, 3, 4, 5].map((i) => { const y = -46 - i * 13, x = i % 2 ? 6 : -6, sc = 1 - i * .12; return `<g transform="translate(${x} ${y}) scale(${sc})">${ring(5, 0, 4.6, 7.5, i > 3 ? '#e9b3c1' : '#d9728f', 0, i * 12)}<circle r="2.4" fill="#fbe7ec"/></g>`; }).join(''),
+    zinnia: ST(66) + lf(0, -20, -48, .75) + lf(0, -30, 44, .7) + '<g transform="translate(0 -80)">' + ring(14, 13, 4.6, 8, '#e0866b', 0, 0) + ring(12, 9, 4, 6.5, '#d9705a', 0, 15) + ring(10, 5, 3.4, 5, '#c85f4c', 0, 8) + '<circle r="4.5" fill="#e0b33f"/></g>',
+    sweetpea: '<path d="M0,0 C-4,-24 6,-42 2,-66 C0,-78 -10,-86 -14,-80" stroke="#7d8a5a" stroke-width="1.4" fill="none"/><path d="M4,-40 c10,-2 12,-12 6,-14 c-5,-1 -6,5 -2,6" stroke="#7d8a5a" stroke-width="1" fill="none"/>' + [[-14, -82, '#e3a6b8', 1], [12, -64, '#c3a6d6', .85], [-10, -50, '#efc3cf', .75]].map(([x, y, c, sc]) => `<g transform="translate(${x} ${y}) scale(${sc})"><path d="M-12,2 C-16,-14 0,-20 0,-12 C0,-20 16,-14 12,2 C6,6 -6,6 -12,2Z" fill="${c}"/><path d="M-7,3 C-10,10 -2,12 0,7 C2,12 10,10 7,3Z" fill="${c}" opacity=".8"/><path d="M-12,2 C-6,-4 6,-4 12,2" stroke="rgba(255,255,255,.5)" fill="none"/></g>`).join(''),
+    snowdrop: '<path d="M0,0 C-2,-40 4,-80 22,-92 C30,-97 36,-92 34,-84" stroke="#7d8a5a" stroke-width="1.5" fill="none"/>' + lf(-2, 0, -14, 1.4) + lf(2, 0, 12, 1.2) + '<g transform="translate(34 -82)"><circle cy="-2" r="3" fill="#8fa070"/><ellipse cx="-6" cy="12" rx="5" ry="13" fill="#fffdf6" stroke="#d8ccb8" stroke-width=".7" transform="rotate(16 -6 12)"/><ellipse cx="6" cy="12" rx="5" ry="13" fill="#fffdf6" stroke="#d8ccb8" stroke-width=".7" transform="rotate(-16 6 12)"/><ellipse cx="0" cy="14" rx="5.4" ry="14" fill="#ffffff" stroke="#d8ccb8" stroke-width=".7"/><path d="M-2,26 q2,3 4,0" stroke="#9aab89" stroke-width="1.6" fill="none"/></g>'
+  };
+  const herb = [
+    ['chamomile', 'Chamomile', 'energy in adversity', 'For every night shift you power through, and still find a kind word for someone at the end of it.'],
+    ['iris', 'Iris', 'wisdom', 'The smartest person in any room, who never once makes anyone else feel small.'],
+    ['gladiolus', 'Gladiolus', 'strength of character', 'You carry heavy days quietly, and you never let them make you any less gentle.'],
+    ['snowdrop', 'Snowdrop', 'hope', 'What you give every family who walks into your labour room, scared and waiting.'],
+    ['zinnia', 'Zinnia', 'thoughts of absent friends', 'For a friend I’ve never met, who I somehow think of all the time.'],
+    ['sweetpea', 'Sweet pea', 'thank you', 'For helping me see my own worth. I don’t think I’ll ever be able to repay that.']
+  ];
+  const tps = ['tp1', 'tp2', 'tp3'];
+  $('herb').innerHTML = herb.map(([k, n, m, w], i) =>
+    `<div class="hcard"><span class="tape ${tps[i % 3]}" style="transform:rotate(${i % 2 ? 5 : -4}deg)"></span><svg viewBox="-50 -125 100 130" aria-hidden="true">${flora[k]}</svg><p class="fl">${n}</p><p class="mean">“${m}”</p><p class="why">${w}</p></div>`).join('');
+  const hb = $('herb');
+  hb.addEventListener('scroll', () => {
+    if (hb.scrollWidth <= hb.clientWidth + 5) return;
+    const end = hb.scrollLeft + hb.clientWidth >= hb.scrollWidth - 20;
+    $('herbnote').textContent = end ? 'pressed with care, one for every reason you’re special' : 'swipe through all six →';
+  }, {passive: true});
+  if (hb.scrollWidth > hb.clientWidth + 5) $('herbnote').textContent = 'swipe through all six →';
+
+  /* by the numbers */
+  const stubs = [
+    ['more than she\u2019ll admit', 'tiny humans welcomed into the world by those hands'],
+    ['classified', 'cups of chai per night shift'],
+    ['please don’t ask', 'hours of sleep this week'],
+    ['∞', 'times she’s said “just five more minutes” to her alarm'],
+    ['countless', 'people who felt safer because she was there'],
+    ['1 of 1', 'people who made me realise my worth'],
+    ['every time', 'her name pops up and makes my day'],
+    ['zero', 'times she’s been anything less than kind']
+  ];
+  $('stubs').innerHTML = stubs.map(([b, l], i) =>
+    `<div class="stub"><div class="main"><span class="big">${b}</span><span class="lbl">${l}</span></div><div class="side"><span>No. ${String(i + 1).padStart(3, '0')}</span></div></div>`).join('');
 
   /* notes */
   const notes = [
