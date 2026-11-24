@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6efe3">
+<title>Open When: Rough Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/ow.css">
+<style>
+.jarbtn{display:block;margin:10px auto 0;border:0;background:none;padding:0;width:min(200px,60vw)}
+.jarbtn svg{width:100%;height:auto;display:block;overflow:visible}
+.jarbtn:active svg{transform:rotate(-4deg)}
+.slip{display:none;margin:18px auto 0;max-width:340px;background:#fffdf8;padding:18px 18px;font-family:'Homemade Apple',cursive;font-size:15px;line-height:2;transform:rotate(-1.5deg);box-shadow:0 10px 18px -14px rgba(75,59,54,.6)}
+.slip.show{display:block;animation:rise .6s ease both}
+.cnt{font-family:'Special Elite',monospace;font-size:13px;color:var(--soft);margin-top:12px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <p class="ow type">open when…</p>
+    <h1>you've had a rough day</h1>
+    <svg class="spray" aria-hidden="true"></svg>
+  </header>
+  <div class="letter">
+    <span class="tape tp3"></span>
+    <div class="sheet torn">
+      <p>Some days in your job are heavier than anyone outside it can understand. I won't pretend I can.</p>
+      <p>But I know you. You care so much that it hurts sometimes, and that is exactly what makes you such a good doctor. One hard day doesn't undo who you are.</p>
+      <p>There's a jar below. Reach into it whenever you need to. It's bottomless, and every word in it is true.</p>
+      <p class="sign hand">— me</p>
+    </div>
+  </div>
+  <div class="card">
+    <span class="tape tp1"></span>
+    <h2>The jar of reminders</h2>
+    <p class="sub">tap the jar. take one. take as many as you need.</p>
+    <button class="jarbtn" id="jar" aria-label="Take a reminder from the jar"><svg viewBox="0 0 200 230" aria-hidden="true">
+      <rect x="62" y="6" width="76" height="22" rx="4" fill="#c9a26b"/><rect x="62" y="14" width="76" height="4" fill="#b08a55"/>
+      <path d="M58,30 h84 v10 q34,8 34,46 v108 q0,30 -30,30 h-92 q-30,0 -30,-30 v-108 q0,-38 34,-46z" fill="rgba(255,255,255,.55)" stroke="#b9a98f" stroke-width="2"/>
+      <g id="slips"></g>
+      <path d="M44,80 q-6,40 0,110" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7" fill="none"/>
+    </svg></button>
+    <div class="slip" id="slip" aria-live="polite"></div>
+    <p class="cnt" id="cnt"></p>
+  </div>
+  <a class="back" href="../">back to your birthday scrapbook</a>
+</main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="defs"></defs></svg>
+<script src="../assets/ow.js"></script>
+<script>
+{
+  const $ = (id) => document.getElementById(id);
+  const notes = [
+    'You did your best today. That is enough.',
+    'Not everything was in your hands. You still held it with care.',
+    'Somebody is alive and safe today because of you.',
+    'You\u2019re allowed to cry in the car. Then you\u2019re allowed to get chai.',
+    'The people who love you are proud of you. I\u2019m proud of you.',
+    'You helped me see my own worth. Let me return the favour: yours is enormous.',
+    'Tomorrow is a new shift, and you\u2019ll be brilliant in it.',
+    'Call me. I\u2019ll talk about absolutely nothing until you feel better.'
+  ];
+  const cols = ['#f6e5e3', '#efe3cf', '#e7ecdf', '#e3dcef', '#fbf7ef'];
+  let g = '';
+  let seed = 5;
+  const r = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+  for (let i = 0; i < 26; i++) {
+    const x = 40 + r() * 110, y = 110 + r() * 100;
+    g += `<rect x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="22" height="9" rx="1" fill="${cols[i % 5]}" stroke="#d8ccb8" stroke-width=".6" transform="rotate(${(r() * 70 - 35).toFixed(0)} ${(x + 11).toFixed(0)} ${(y + 4).toFixed(0)})"/>`;
+  }
+  $('slips').innerHTML = g;
+  let order = notes.map((_, i) => i).sort(() => Math.random() - .5), k = 0;
+  $('jar').addEventListener('click', () => {
+    const slip = $('slip');
+    slip.textContent = notes[order[k % notes.length]];
+    slip.classList.remove('show');
+    void slip.offsetWidth;
+    slip.classList.add('show');
+    k++;
+    $('cnt').textContent = k < notes.length ? 'tap again for another' : 'that\u2019s the whole jar. it refills itself, so keep going.';
+  });
+}
+</script>
+</body>
+</html>

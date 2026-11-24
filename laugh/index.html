@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6efe3">
+<title>Open When: Need a Laugh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/ow.css">
+<style>
+.joke{position:relative;margin:18px auto 0;max-width:420px;min-height:170px;background:#fffdf8;padding:28px 22px 22px;display:grid;align-content:center;font-family:'Special Elite',monospace;font-size:17px;line-height:1.5;transform:rotate(-1deg);box-shadow:0 10px 18px -14px rgba(75,59,54,.6)}
+.joke .n{display:block;font-size:13px;color:var(--soft);margin-bottom:8px}
+.joke.pop{animation:rise .5s ease both}
+.rate{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+.rate button{border:1.5px dashed var(--soft);background:transparent;border-radius:999px;padding:8px 14px;min-height:44px;font-family:'Special Elite',monospace;font-size:14px}
+.rate button:hover{border-style:solid}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <p class="ow type">open when…</p>
+    <h1>you need a laugh</h1>
+    <svg class="spray" aria-hidden="true"></svg>
+  </header>
+  <div class="letter">
+    <span class="tape tp2"></span>
+    <div class="sheet torn">
+      <p>Okay. Emergency comedy services, reporting for duty.</p>
+      <p>Results not guaranteed. Groans highly likely. Side effects may include rolling your eyes so hard you see your own brain.</p>
+      <p class="sign hand">— me</p>
+    </div>
+  </div>
+  <div class="card">
+    <span class="tape tp3"></span>
+    <h2>Today's comedy rounds</h2>
+    <div class="joke" id="joke" aria-live="polite"><span class="n" id="n"></span><span id="jt"></span></div>
+    <div class="rate"><button data-r="groan">groan</button><button data-r="smile">tiny smile</button><button data-r="lol">actually laughed</button></div>
+    <p class="msg" id="msg" aria-live="polite"></p>
+    <button class="btn" id="next">another one</button>
+  </div>
+  <a class="back" href="../">back to your birthday scrapbook</a>
+</main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="defs"></defs></svg>
+<script src="../assets/ow.js"></script>
+<script>
+{
+  const $ = (id) => document.getElementById(id);
+  const jokes = [
+    'Babies have terrible time management. Not one of them has ever arrived during OPD hours.',
+    'You\u2019ve delivered hundreds of babies and still can\u2019t deliver a reply before midnight.',
+    'Me: are you free this weekend?\nYou: define \u201cfree\u201d. Define \u201cweekend\u201d.',
+    'Your handwriting is so doctor-y the pharmacist asked if the prescription was shayari.',
+    'Doctors say eight hours of sleep is essential. Doctors also, apparently, don\u2019t sleep.',
+    'Your chai has done more night shifts than most residents.',
+    'Your pager has heard \u201cjust five more minutes\u201d more times than any snooze button in history.',
+    'Still not laughing? Fine. Picture me holding a newborn for the first time. With these biceps. Absolutely terrified.'
+  ];
+  const replies = {groan: 'noted. adjusting comedy dosage.', smile: 'I\u2019ll take it. a tiny smile from you counts double.', lol: 'mission accomplished. you can go back to saving lives now.'};
+  let i = 0;
+  const show = () => {
+    $('n').textContent = 'case ' + (i + 1) + ' of ' + jokes.length;
+    $('jt').textContent = jokes[i];
+    $('jt').style.whiteSpace = 'pre-line';
+    const j = $('joke');
+    j.classList.remove('pop');
+    void j.offsetWidth;
+    j.classList.add('pop');
+    $('msg').textContent = '';
+    $('next').textContent = i === jokes.length - 1 ? 'start again' : 'another one';
+  };
+  $('next').addEventListener('click', () => { i = (i + 1) % jokes.length; show(); });
+  document.querySelector('.rate').addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    $('msg').textContent = replies[b.dataset.r];
+    if (b.dataset.r === 'lol') petalsFall(24);
+  });
+  show();
+}
+</script>
+</body>
+</html>

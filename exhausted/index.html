@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6efe3">
+<title>Open When: Exhausted</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/ow.css">
+<style>
+.bloom{display:block;width:min(240px,70vw);height:min(240px,70vw);margin:18px auto 0;overflow:visible}
+.bloom .pg{transform-origin:0 0;transform:scale(.55);transition:transform 4s ease-in-out}
+.bloom.in .pg{transform:scale(1)}
+.bloom.out .pg{transition-duration:6s}
+.phase{font-family:'Homemade Apple',cursive;font-size:18px;line-height:2;min-height:2.2em;margin-top:6px}
+.left{font-family:'Special Elite',monospace;font-size:14px;color:var(--soft)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <p class="ow type">open when…</p>
+    <h1>you're completely exhausted</h1>
+    <svg class="spray" aria-hidden="true"></svg>
+  </header>
+  <div class="letter">
+    <span class="tape tp2"></span>
+    <div class="sheet torn">
+      <p>You've given everything today. To patients, to families, to people who will never even know your name. Of course you're running on empty.</p>
+      <p>So for the next minute, you don't have to fix anything or be anyone's doctor. You don't have to reply to anyone, including me. Just breathe with the flower below.</p>
+      <p>And then please, please go to sleep. The world will still need you tomorrow, and it needs you rested.</p>
+      <p class="sign hand">— me</p>
+    </div>
+  </div>
+  <div class="card">
+    <span class="tape tp3"></span>
+    <h2>One minute, just for you</h2>
+    <p class="sub">breathe in as it opens, out as it closes</p>
+    <svg class="bloom" id="breath" viewBox="-100 -100 200 200" aria-hidden="true"><g class="pg" id="pg"></g></svg>
+    <p class="phase" id="phase" aria-live="polite"></p>
+    <p class="left" id="left"></p>
+    <button class="btn" id="go">start one minute</button>
+  </div>
+  <a class="back" href="../">back to your birthday scrapbook</a>
+</main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="defs"></defs></svg>
+<script src="../assets/ow.js"></script>
+<script>
+{
+  const $ = (id) => document.getElementById(id);
+  let s = '';
+  const ring = (n, r, rx, ry, fill, rot) => { for (let k = 0; k < n; k++) s += `<ellipse cx="0" cy="${-r}" rx="${rx}" ry="${ry}" fill="${fill}" opacity=".88" transform="rotate(${k * 360 / n + rot})"/>`; };
+  ring(12, 52, 16, 42, '#9aab89', 15);
+  ring(10, 40, 15, 36, '#c98b8b', 0);
+  ring(8, 24, 11, 22, '#b07a86', 22);
+  s += '<circle r="14" fill="#d6a84f"/><circle r="6" fill="#fffaf0" opacity=".6"/>';
+  $('pg').innerHTML = s;
+  const bloom = $('breath'), phase = $('phase'), left = $('left'), go = $('go');
+  let running = false;
+  const cycle = (k) => {
+    if (k >= 6) {
+      bloom.classList.remove('in', 'out');
+      phase.textContent = 'there. now go to bed. that\u2019s an order.';
+      left.textContent = '';
+      go.textContent = 'one more minute';
+      go.style.display = '';
+      running = false;
+      petalsFall(20);
+      return;
+    }
+    left.textContent = (6 - k) + ' breaths left';
+    bloom.classList.remove('out');
+    bloom.classList.add('in');
+    phase.textContent = 'breathe in…';
+    setTimeout(() => {
+      bloom.classList.remove('in');
+      bloom.classList.add('out');
+      phase.textContent = 'and slowly out…';
+      setTimeout(() => cycle(k + 1), 6000);
+    }, 4000);
+  };
+  go.addEventListener('click', () => {
+    if (running) return;
+    running = true;
+    go.style.display = 'none';
+    cycle(0);
+  });
+}
+</script>
+</body>
+</html>

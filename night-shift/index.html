@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6efe3">
+<title>Open When: Night Shift</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/ow.css">
+<style>
+.kit{list-style:none;margin:16px 0 0;padding:0;text-align:left}
+.kit li{border-bottom:1px dotted #c9b493}
+.kit button{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:center;width:100%;border:0;background:none;padding:12px 2px;text-align:left;font-family:'Special Elite',monospace;font-size:15px;line-height:1.4;min-height:48px}
+.kit .box{width:24px;height:24px;border:1.5px solid var(--ink);border-radius:3px;display:grid;place-items:center;font-size:18px;color:var(--red)}
+.kit .on .box::after{content:"✓"}
+.kit .on .t{text-decoration:line-through;text-decoration-color:var(--red);color:var(--soft)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <p class="ow type">open when…</p>
+    <h1>you're on a night shift</h1>
+    <svg class="spray" aria-hidden="true"></svg>
+  </header>
+  <div class="letter">
+    <span class="tape tp1"></span>
+    <div class="sheet torn">
+      <p>Hi doctor. If you're reading this, it's some ungodly hour, the ward has gone quiet for five whole minutes, and you're running on chai and pure stubbornness.</p>
+      <p>I just wanted you to know that someone outside the hospital is thinking about you right now, and is honestly a little in awe of you. Most of the world is asleep. You're out there making sure tiny humans arrive safely. That's not normal, Raji. That's heroic.</p>
+      <p>Now do the checklist below. Doctor's orders. Well, patient's orders. Close enough.</p>
+      <p class="sign hand">— me</p>
+    </div>
+  </div>
+  <div class="card">
+    <span class="tape tp3"></span>
+    <h2>The 3 a.m. survival kit</h2>
+    <p class="sub">tick them off. all of them. I'll know.</p>
+    <ul class="kit" id="kit"></ul>
+    <p class="msg" id="msg" aria-live="polite"></p>
+  </div>
+  <a class="back" href="../">back to your birthday scrapbook</a>
+</main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="defs"></defs></svg>
+<script src="../assets/ow.js"></script>
+<script>
+{
+  const $ = (id) => document.getElementById(id);
+  const items = [
+    'Drink a full glass of water (chai doesn\u2019t count)',
+    'Eat something that didn\u2019t come out of a vending machine',
+    'Roll your shoulders back. Yes, right now.',
+    'Close your eyes for sixty seconds. The ward can wait sixty seconds.',
+    'Remember you\u2019re doing an amazing job',
+    'Text me if you\u2019re bored. I\u2019m probably awake anyway.'
+  ];
+  $('kit').innerHTML = items.map((t) => `<li><button><span class="box"></span><span class="t">${t}</span></button></li>`).join('');
+  $('kit').addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    b.classList.toggle('on');
+    const n = $('kit').querySelectorAll('.on').length;
+    $('msg').textContent = n === items.length ? 'kit complete. go save the world. then sleep.' : (n ? (items.length - n) + ' to go, doctor' : '');
+    if (n === items.length) petalsFall(30);
+  });
+}
+</script>
+</body>
+</html>
